@@ -1,0 +1,16 @@
+<odoo>
+    <record id="patient_demo_1" model="hr_hospital.patient">
+        <field name="name">Anna Petrova</field>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+    </record>
+
+    <record id="patient_demo_2" model="hr_hospital.patient">
+        <field name="name">Oleg Kovalenko</field>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+    </record>
+
+    <record id="patient_demo_3" model="hr_hospital.patient">
+        <field name="name">Maria Ivanenko</field>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<odoo noupdate="1">
+    <record id="disease_flu" model="hr_hospital.desease">
+        <field name="name">Flu</field>
+        <field name="description">Seasonal influenza</field>
+    </record>
+
+    <record id="disease_cold" model="hr_hospital.desease">
+        <field name="name">Common Cold</field>
+        <field name="description">Viral upper respiratory infection</field>
+    </record>
+
+    <record id="disease_allergy" model="hr_hospital.desease">
+        <field name="name">Allergy</field>
+        <field name="description">Allergic reaction</field>
+    </record>
+</odoo>
