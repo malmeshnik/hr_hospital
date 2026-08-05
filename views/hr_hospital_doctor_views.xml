@@ -1,19 +1,22 @@
 <odoo>
     <record id="hr_hospital_doctor_tree" model="ir.ui.view">
-        <field name="name">hr_hospital.doctor.tree ()</field>
-        <field name="model">hr_hospital.doctor</field>
+        <field name="name">hr_hospital_doctor_tree</field>
+        <field name="model">hr.hospital.doctor</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
+                <field name="category_id" widget="many2one_tags"/>
                 <field name="specialization"/>
                 <field name="patient_ids" widget="many2many_tags"/>
+                <field name="is_intern"/>
+                <field name="mentor_id" widget="many2one_tags"/>
             </list>
         </field>
     </record>
 
     <record id="hr_hospital_doctor_form" model="ir.ui.view">
-        <field name="name">hr_hospital.doctor.form ()</field>
-        <field name="model">hr_hospital.doctor</field>
+        <field name="name">hr_hospital_doctor_form</field>
+        <field name="model">hr.hospital.doctor</field>
         <field name="arch" type="xml">
             <form>
                 <header></header>
@@ -21,9 +24,12 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="category_id" widget="many2one_tags"/>
                             <field name="specialization"/>
+                            <field name="is_intern"/>
                         </group>
                         <group>
+                            <field name="mentor_id" widget="many2one_tags"/>
                             <field name="patient_ids" widget="many2many_tags"/>
                         </group>
                     </group>
@@ -35,7 +41,7 @@
     <record id="action_hr_hospital_doctor_window" model="ir.actions.act_window">
         <field name="name">Doctors</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">hr_hospital.doctor</field>
+        <field name="res_model">hr.hospital.doctor</field>
         <field name="view_mode">list,form</field>
     </record>
 

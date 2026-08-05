@@ -1,18 +1,19 @@
 <odoo>
     <record id="hr_hospital_desease_tree" model="ir.ui.view">
-        <field name="name">hr_hospital.desease.tree ()</field>
-        <field name="model">hr_hospital.desease</field>
+        <field name="name">hr_hospital_desease_tree</field>
+        <field name="model">hr.hospital.desease</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
                 <field name="description"/>
+                <field name="parent_id" widget="mane2one_tags"/>
             </list>
         </field>
     </record>
 
     <record id="hr_hospital_desease_form" model="ir.ui.view">
-        <field name="name">hr_hospital.desease.form ()</field>
-        <field name="model">hr_hospital.desease</field>
+        <field name="name">hr_hospital_desease_form</field>
+        <field name="model">hr.hospital.desease</field>
         <field name="arch" type="xml">
             <form>
                 <header></header>
@@ -21,6 +22,7 @@
                         <group>
                             <field name="name"/>
                             <field name="description"/>
+                            <field name="parent_id" widget="mane2one_tags"/>
                         </group>
                     </group>
                 </sheet>
@@ -31,7 +33,7 @@
     <record id="action_hr_hospital_desease_window" model="ir.actions.act_window">
         <field name="name">Deseases</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">hr_hospital.desease</field>
+        <field name="res_model">hr.hospital.desease</field>
         <field name="view_mode">list,form</field>
     </record>
 

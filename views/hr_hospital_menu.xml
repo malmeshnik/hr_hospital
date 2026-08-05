@@ -10,5 +10,15 @@
     <menuitem id="hr_hospital_menu_patient"
               parent="hr_hospital_main_menu"
               name="Patients" sequence="30"/>
-            
+    
+    <menuitem id="hr_hospital_doctor_category_menu"
+              name="Doctor Categories"
+              parent="hr_hospital_main_menu"
+              action="hr_hospital_doctor_category_action"
+              sequence="10"/>
+    <menuitem id="hr_hospital_doctor_history_menu"
+              name="Doctor History"
+              parent="hr_hospital_main_menu"
+              action="action_hr_hospital_doctor_history_window"
+              sequence="10"/>
 </odoo>

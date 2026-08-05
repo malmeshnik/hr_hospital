@@ -1,16 +1,31 @@
-<odoo noupdate="1">
-    <record id="disease_flu" model="hr_hospital.desease">
+<odoo>
+
+    <record id="disease_infectious" model="hr.hospital.desease">
+        <field name="name">Infectious Diseases</field>
+        <field name="description">Diseases caused by microorganisms and viruses.</field>
+    </record>
+
+    <record id="disease_respiratory_infections" model="hr.hospital.desease">
+        <field name="name">Acute Respiratory Infections</field>
+        <field name="parent_id" ref="disease_infectious"/>
+        <field name="description">Infectious lesions of the respiratory tract.</field>
+    </record>
+
+    <record id="disease_flu" model="hr.hospital.desease">
         <field name="name">Flu</field>
-        <field name="description">Seasonal influenza</field>
+        <field name="parent_id" ref="disease_respiratory_infections"/>
+        <field name="description">Acute respiratory viral infection (ARVI).</field>
     </record>
 
-    <record id="disease_cold" model="hr_hospital.desease">
-        <field name="name">Common Cold</field>
-        <field name="description">Viral upper respiratory infection</field>
+    <record id="disease_covid19" model="hr.hospital.desease">
+        <field name="name">COVID-19</field>
+        <field name="parent_id" ref="disease_respiratory_infections"/>
+        <field name="description">Coronavirus infection.</field>
     </record>
 
-    <record id="disease_allergy" model="hr_hospital.desease">
-        <field name="name">Allergy</field>
-        <field name="description">Allergic reaction</field>
+    <record id="disease_cardiovascular" model="hr.hospital.desease">
+        <field name="name">Cardiovascular Diseases</field>
+        <field name="description">Pathologies of the heart and blood vessels.</field>
     </record>
+
 </odoo>

@@ -1,0 +1,28 @@
+<odoo>
+    <record id="hr_hospital_mass_reassign_doctor_wizard_form" model="ir.ui.view">
+        <field name="name">hr_hospital_mass_reassign_doctor_wizard_form</field>
+        <field name="model">hr.hospital.mass.reassign.doctor.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mass reassign doctor">
+                <group>
+                    <field name="new_doctor_id"/>
+                    <field name="change_date"/>
+                </group>
+                <footer>
+                    <button name="action_reassign_doctor" type="object"
+                            string="Aplly" class="btn-primary"/>
+                    <button string="Cancle" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_hospital_mass_reassign_doctor_wizard" model="ir.actions.act_window">
+        <field name="name">Mass reassign doctor</field>
+        <field name="res_model">hr.hospital.mass.reassign.doctor.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_hr_hospital_patient"/>
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

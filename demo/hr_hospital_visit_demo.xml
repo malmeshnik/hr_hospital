@@ -1,0 +1,44 @@
+<odoo>
+
+    <record id="visit_demo_1" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="desease_id" ref="disease_flu"/>
+        <field name="status">planned</field>
+    </record>
+
+    <record id="visit_demo_2" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="desease_id" ref="disease_flu"/>
+        <field name="status">planned</field>
+    </record>
+
+    <record id="visit_demo_3" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="desease_id" ref="disease_flu"/>
+        <field name="status">planned</field>
+    </record>
+
+    <record id="visit_demo_4" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="desease_id" ref="disease_flu"/>
+        <field name="status">planned</field>
+    </record>
+
+    <record id="visit_demo_5" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="desease_id" ref="disease_flu"/>
+        <field name="status">planned</field>
+    </record>
+
+    <record id="visit_demo_6" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="desease_id" ref="disease_flu"/>
+        <field name="status">planned</field>
+    </record>
+</odoo>

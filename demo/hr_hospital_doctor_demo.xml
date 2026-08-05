@@ -1,15 +1,15 @@
 <odoo>
-    <record id="doctor_demo_1" model="hr_hospital.doctor">
+    <record id="doctor_demo_1" model="hr.hospital.doctor">
         <field name="name">John Smith</field>
         <field name="specialization">Therapist</field>
     </record>
 
-    <record id="doctor_demo_2" model="hr_hospital.doctor">
+    <record id="doctor_demo_2" model="hr.hospital.doctor">
         <field name="name">Emily Johnson</field>
         <field name="specialization">Pediatrician</field>
     </record>
 
-    <record id="doctor_demo_3" model="hr_hospital.doctor">
+    <record id="doctor_demo_3" model="hr.hospital.doctor">
         <field name="name">Michael Brown</field>
         <field name="specialization">Surgeon</field>
     </record>
