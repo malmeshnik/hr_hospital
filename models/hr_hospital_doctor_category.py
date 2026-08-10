@@ -12,10 +12,7 @@ class HrHospitalDoctorCategory(models.Model):
         inverse_name="category_id",
     )
 
-    _sql_constraints = [
-        (
-            "name_uniq",
-            "unique(name)",
-            "The name of the doctor category must be unique.",
-        )
-    ]
+    _name_uniq = models.Constraint(
+        "unique(name)",
+        "This name already exists!",
+    )
