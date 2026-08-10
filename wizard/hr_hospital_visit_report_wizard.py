@@ -1,3 +1,4 @@
+from datetime import datetime, time
 from odoo import api, fields, models
 
 
@@ -21,14 +22,18 @@ class HrHospitalVisitReportWizard(models.TransientModel):
 
         if active_model == "hr.hospital.doctor" and "doctor_ids" in fields_list:
             res["doctor_ids"] = [(6, 0, active_ids)]
-            patient_ids = self.env["hr.hospital.patient"].search(
-                [("doctor_id", "in", active_ids)]
-            )
-            res["patient_ids"] = patient_ids
+
+            doctors = self.env["hr.hospital.patient"].browse(active_ids)
+            patient_ids = doctors.mapped("patient_ids").ids
+
+            res["patient_ids"] = [(6, 0, patient_ids)]
         elif active_model == "hr.hospital.patient" and "patient_ids" in fields_list:
             res["patient_ids"] = [(6, 0, active_ids)]
-            doctor_ids = self.env["hr.hospital.doctor"].browse(active_ids).doctor_id
-            res["doctor_ids"] = doctor_ids
+
+            patients = self.env["hr.hospital.patient"].browse(active_ids)
+            doctor_ids = patients.mapped("doctor_id").ids
+
+            res["doctor_ids"] = [(6, 0, doctor_ids)]
 
         return res
 
@@ -42,9 +47,11 @@ class HrHospitalVisitReportWizard(models.TransientModel):
         if self.patient_ids:
             domain.append(("patient_id", "in", self.patient_ids.ids))
         if self.start_date:
-            domain.append(("scheduled_datetime", ">=", self.start_date))
+            start_datetime = datetime.combine(self.start_date, time.min)
+            domain.append(("visit_datetime", ">=", start_datetime))
         if self.end_date:
-            domain.append(("scheduled_datetime", "<=", self.end_date))
+            end_datetime = datetime.combine(self.end_date, time.max)
+            domain.append(("visit_datetime", "<=", end_datetime))
         if self.is_completed_visits:
             domain.append(("status", "=", "done"))
         if self.desease_id:

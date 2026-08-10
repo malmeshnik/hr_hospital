@@ -23,6 +23,16 @@ class HrHospitalVisit(models.Model):
 
     summary = fields.Html()
 
+    def action_view_same_desease_visits(self):
+        self.ensure_one()
+        return {
+            "name": "Visits with same desease",
+            "type": "ir.actions.act_window",
+            "res_model": "hr.hospital.visit",
+            "view_mode": "list,form",
+            "domain": [("desease_id", "=", self.desease_id.id)],
+        }
+
     def write(self, vals):
         restricted_fields = {"doctor_id", "visit_datetime"}
 

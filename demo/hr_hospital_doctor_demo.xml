@@ -13,4 +13,14 @@
         <field name="name">Michael Brown</field>
         <field name="specialization">Surgeon</field>
     </record>
+
+    <record id="doctor_demo_intern_4" model="hr.hospital.doctor">
+        <field name="name">Andriy Petrenko</field>
+        <field name="category_id" ref="doctor_category_intern"/>
+    </record>
+
+    <record id="doctor_demo_intern_5" model="hr.hospital.doctor">
+        <field name="name">Kateryna Sydorenko</field>
+        <field name="category_id" ref="doctor_category_intern"/>
+    </record>
 </odoo>

@@ -18,8 +18,15 @@
         <field name="model">hr.hospital.visit</field>
         <field name="arch" type="xml">
             <form>
-                <header></header>
+                <header>
+                    <field name="status" widget="statusbar"
+                            statusbar_visible="planned,done,cancelled"/>
+                </header>
                 <sheet>
+                    <button name="action_view_same_desease_visits" type="object"
+                            string="Same desease visits" class="btn-secondary">
+                    </button>
+                    <separator/>
                     <group>
                         <group>
                             <field name="patient_id" widget="many2one_tags"/>
@@ -29,8 +36,63 @@
                             <field name="status"/>
                         </group>
                     </group>
+                    <field name="summary" />
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="hr_hospital_visit_view_calendar" model="ir.ui.view">
+        <field name="name">hr_hospital_visit_view_calendar</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <calendar string="Visits" date_start="scheduled_datetime" color="doctor_id">
+                <field name="patient_id" />
+                <field name="doctor_id" />
+                <field name="status" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="hr_hospital_visit_view_search" model="ir.ui.view">
+        <field name="name">hr_hospital_visit_view_search</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="patient_id" />
+                <field name="doctor_id" />
+                <field name="desease_id" />
+                <group>
+                    <filter name="group_by_status" string="Status" context="{'group_by': 'status'}" />
+                </group>
+
+                <searchpanel>
+                    <field name="doctor_id" select="multi"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="hr_hospital_visit_view_pivot" model="ir.ui.view">
+        <field name="name">hr.hospital.visit.view.pivot</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <pivot string="Visits Pivot">
+                <field name="doctor_id" type="row"/>
+                <field name="visit_datetime" interval="month" type="col"/>
+                <field name="status" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="hr_hospital_visit_view_graph" model="ir.ui.view">
+        <field name="name">hr_hospital_visit_view_graph</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <graph string="Visits by Month" type="bar" stacked="1">
+                <field name="visit_datetime" interval="month"/>
+                <field name="desease_id" />
+            </graph>
         </field>
     </record>
 
@@ -38,7 +100,9 @@
         <field name="name">Visits</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr.hospital.visit</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,calendar,pivot,graph</field>
+        <field name="search_view_id" ref="hr_hospital_visit_view_search"/>
+        <field name="context">{'search_default_filter_this_year': 1}</field>
     </record>
 
     <menuitem id="hr_hospital_menu_visit"

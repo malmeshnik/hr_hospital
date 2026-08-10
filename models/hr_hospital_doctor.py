@@ -17,6 +17,10 @@ class HrHospitalDoctor(models.Model):
     mentor_id = fields.Many2one(
         comodel_name="hr.hospital.doctor", domain="[('is_intern', '=', False)]"
     )
+    intern_ids = fields.One2many(
+        comodel_name="hr.hospital.doctor",
+        inverse_name="mentor_id",
+    )
 
     @api.depends("category_id")
     def _compute_is_intern(self):

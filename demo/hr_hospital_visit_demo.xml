@@ -41,4 +41,46 @@
         <field name="desease_id" ref="disease_flu"/>
         <field name="status">planned</field>
     </record>
+
+    <record id="visit_demo_7" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="desease_id" ref="disease_covid19"/>
+        <field name="status">done</field>
+    </record>
+
+    <record id="visit_demo_8" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="desease_id" ref="disease_cardiovascular"/>
+        <field name="status">cancelled</field>
+    </record>
+
+    <record id="visit_demo_9" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="desease_id" ref="disease_infectious"/>
+        <field name="status">planned</field>
+    </record>
+
+    <record id="visit_demo_10" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="desease_id" ref="disease_respiratory_infections"/>
+        <field name="status">done</field>
+    </record>
+
+    <record id="visit_demo_11" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="desease_id" ref="disease_covid19"/>
+        <field name="status">done</field>
+    </record>
+
+    <record id="visit_demo_12" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="desease_id" ref="disease_cardiovascular"/>
+        <field name="status">cancelled</field>
+    </record>
 </odoo>
