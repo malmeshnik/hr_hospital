@@ -23,7 +23,7 @@ class HrHospitalVisitReportWizard(models.TransientModel):
         if active_model == "hr.hospital.doctor" and "doctor_ids" in fields_list:
             res["doctor_ids"] = [(6, 0, active_ids)]
 
-            doctors = self.env["hr.hospital.patient"].browse(active_ids)
+            doctors = self.env["hr.hospital.doctor"].browse(active_ids)
             patient_ids = doctors.mapped("patient_ids").ids
 
             res["patient_ids"] = [(6, 0, patient_ids)]
