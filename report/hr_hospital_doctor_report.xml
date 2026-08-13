@@ -1,0 +1,43 @@
+<odoo>
+
+    <record id="hr_hostpital_doctor_report_action" model="ir.actions.report">
+        <field name="name">Doctor Report</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_hospital.hr_hospital_doctor_report</field>
+        <field name="report_file">hr_hospital.hr_hospital_doctor_report</field>
+        <field name="print_report_name">'Doctor - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="hr_hospital_doctor_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center mb-4">
+                            <h2><span t-field="doc.name"/></h2>
+                            <h4 class="text-muted"><span t-field="doc.specialization"/></h4>
+                        </div>
+                    
+                        <t t-call="hr_hospital.report_visit_history_table">
+                            <t t-set="visits" t-value="env['hr.hospital.visit'].search([('doctor_id', '=', doc.id)])"/>
+                        </t>
+
+                        <t t-call="hr_hospital.report_patient_table">
+                            <t t-set="patients" t-value="doc.patient_ids"/>
+                        </t>
+
+                        <div class="mt-4 text-muted" style="font-size: 10px">
+                            <span t-esc="env.company.city"/> - 
+                            Printed on
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M')"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

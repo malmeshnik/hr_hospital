@@ -14,6 +14,10 @@
         "views/hr_hospital_desease_views.xml",
         "views/hr_hospital_visit_views.xml",
         #
+        "report/report_visit_history_table.xml",
+        "report/report_patient_table.xml",
+        "report/hr_hospital_doctor_report.xml",
+        #
         "wizard/hr_hospital_mass_reassign_doctor_wizard_view.xml",
         "wizard/hr_hospital_visit_report_wizard_view.xml",
         "wizard/hr_hospital_desease_report_wizard_view.xml",

@@ -8,6 +8,7 @@ class HrHospitalDoctor(models.Model):
 
     name = fields.Char()
     specialization = fields.Char()
+    active = fields.Boolean(default=True)
     is_intern = fields.Boolean(store=True, compute="_compute_is_intern")
 
     patient_ids = fields.Many2many(comodel_name="hr.hospital.patient")

@@ -1,0 +1,27 @@
+<odoo>
+
+    <template id="report_patient_table">
+        <h5>Patients</h5>
+        <table class="table table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="patients" t-as="patient">
+                    <tr>
+                        <td><span t-field="patient.name"/></td>
+                        <td><span t-field="patient.gender"/></td>
+                        <td><span t-field="patient.birth_date"/></td>
+                        <td><span t-field="patient.phone"/></td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+
+</odoo>
