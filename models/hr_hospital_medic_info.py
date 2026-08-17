@@ -3,6 +3,12 @@ from odoo import models, fields, api
 
 
 class HrHospitalMedicInfo(models.AbstractModel):
+    """Abstract model providing common medical information.
+
+    Contains basic physical metrics (blood type, gender, date of birth) and
+    a computed age property for inheriting models like doctors and patients.
+    """
+
     _name = "hr.hospital.medic.info"
     _description = "Medic Info"
 
@@ -24,6 +30,7 @@ class HrHospitalMedicInfo(models.AbstractModel):
 
     @api.depends("birth_date")
     def _compute_age(self):
+        """Compute the age in full years based on the birth date and current context date."""
         today = fields.Date.context_today(self)
         for record in self:
             if record.birth_date:

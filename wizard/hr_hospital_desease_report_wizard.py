@@ -5,6 +5,12 @@ from datetime import datetime, time
 
 
 class HrHospitalDeseaseReportWizard(models.TransientModel):
+    """Wizard model for generating filtered disease report visits.
+
+    Allows users to specify date ranges, target doctors, and diseases to filter
+    and view matching hospital visit records grouped by disease.
+    """
+
     _name = "hr.hospital.desease.report.wizard"
     _description = "Desease report"
 
@@ -17,6 +23,12 @@ class HrHospitalDeseaseReportWizard(models.TransientModel):
 
     @api.constrains("date_from", "date_to")
     def _check_dates(self):
+        """Validate that the starting date does not exceed the ending date.
+
+        Raises:
+            ValidationError: If date_from is strictly after date_to.
+        """
+
         for wizard in self:
             if (
                 wizard.date_from
@@ -26,6 +38,13 @@ class HrHospitalDeseaseReportWizard(models.TransientModel):
                 raise ValidationError('"Date From" cannot be later than "Date To".')
 
     def action_generate_report(self):
+        """Generate a filtered list view action of visit records based on wizard criteria.
+
+        Converts date boundaries to full datetime bounds and applies doctor/disease domain filters.
+
+        Returns:
+            dict: An ir.actions.act_window action targeting hr.hospital.visit grouped by disease.
+        """
         self.ensure_one()
         datetime_from = datetime.combine(self.date_from, time.min)
         datetime_to = datetime.combine(self.date_to, time.max)

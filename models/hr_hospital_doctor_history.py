@@ -2,6 +2,12 @@ from odoo import models, fields, api
 
 
 class HrHospitalDoctorhistory(models.Model):
+    """Model tracking the assignment history between doctors and patients.
+
+    Stores historical records of doctor assignments, including assignment
+    and termination dates for audit and tracking purposes.
+    """
+
     _name = "hr.hospital.doctor.history"
     _description = "Doctor History"
 
@@ -13,6 +19,12 @@ class HrHospitalDoctorhistory(models.Model):
 
     @api.onchange("assign_date", "end_date")
     def _onchange_dates_check(self):
+        """Validate assignment and end dates on UI field changes.
+
+        Returns:
+            dict: A warning dictionary if the assignment date is set after the end date.
+        """
+
         for record in self:
             if record.assign_date and record.end_date:
                 if record.assign_date > record.end_date:
@@ -24,6 +36,7 @@ class HrHospitalDoctorhistory(models.Model):
                     }
 
     def _compute_display_name(self):
+        """Compute the formatted display name combining patient, doctor details, and assignment date."""
         for record in self:
             category = record.doctor_id.category_id.name or ""
             date_str = (

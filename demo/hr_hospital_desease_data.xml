@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="disease_infectious" model="hr.hospital.desease">
         <field name="name">Infectious Diseases</field>
         <field name="description">Diseases caused by microorganisms and viruses.</field>
@@ -28,4 +27,28 @@
         <field name="description">Pathologies of the heart and blood vessels.</field>
     </record>
 
+    <record id="disease_infectious" model="hr.hospital.desease" context="{'lang': 'uk_UA'}">
+        <field name="name">Інфекційні захворювання</field>
+        <field name="description">Захворювання, викликані мікроорганізмами та вірусами.</field>
+    </record>
+
+    <record id="disease_respiratory_infections" model="hr.hospital.desease" context="{'lang': 'uk_UA'}">
+        <field name="name">Гострі респіраторні інфекції</field>
+        <field name="description">Інфекційні ураження дихальних шляхів.</field>
+    </record>
+
+    <record id="disease_flu" model="hr.hospital.desease" context="{'lang': 'uk_UA'}">
+        <field name="name">Грип</field>
+        <field name="description">Гостра респіраторна вірусна інфекція (ГРВІ).</field>
+    </record>
+
+    <record id="disease_covid19" model="hr.hospital.desease" context="{'lang': 'uk_UA'}">
+        <field name="name">COVID-19</field>
+        <field name="description">Коронавірусна інфекція.</field>
+    </record>
+
+    <record id="disease_cardiovascular" model="hr.hospital.desease" context="{'lang': 'uk_UA'}">
+        <field name="name">Серцево-судинні захворювання</field>
+        <field name="description">Патології серця та судин.</field>
+    </record>
 </odoo>

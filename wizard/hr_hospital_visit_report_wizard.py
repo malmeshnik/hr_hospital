@@ -3,6 +3,12 @@ from odoo import api, fields, models
 
 
 class HrHospitalVisitReportWizard(models.TransientModel):
+    """Wizard model for generating filtered patient visit reports.
+
+    Allows filtering visits by doctors, patients, date ranges, completion status,
+    and associated disease. Pre-populates default fields based on active context.
+    """
+
     _name = "hr.hospital.visit.report.wizard"
     _description = "Patient Visits Report Wizard"
 
@@ -15,6 +21,15 @@ class HrHospitalVisitReportWizard(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
+        """Pre-populate wizard default values based on active model and active record IDs from context.
+
+        Args:
+            fields_list (list): List of field names requested for default values.
+
+        Returns:
+            dict: Dictionary of default values for wizard initialization.
+        """
+
         res = super().default_get(fields_list)
 
         active_model = self.env.context.get("active_model")
@@ -38,6 +53,11 @@ class HrHospitalVisitReportWizard(models.TransientModel):
         return res
 
     def action_generate_report(self):
+        """"Build search domain filters and return an action opening matching visit records.
+
+        Returns:
+            dict: An ir.actions.act_window action targeting hr.hospital.visit in list view.
+        """
         self.ensure_one()
 
         domain = []

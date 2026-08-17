@@ -4,6 +4,8 @@
     "depends": ["base"],
     "author": "Malme",
     "data": [
+        "security/hr_hospital_security.xml",
+        "security/hr_hospital_security_rules.xml",
         "security/ir.model.access.csv",
         #
         "views/hr_hospital_doctor_category_views.xml",

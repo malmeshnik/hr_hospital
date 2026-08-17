@@ -1,0 +1,41 @@
+<odoo>
+
+    <data>
+    
+        <record id="hr_hospital_visit_rule_patient" model="ir.rule">
+            <field name="name">Visit: patient sees only own visits</field>
+            <field name="model_id" ref="model_hr_hospital_visit"/>
+            <field name="domain_force">[('patient_id.system_user', 'in', [user.id])]</field>
+            <field name="groups" eval="[(4, ref('group_hr_hospital_patient'))]"/>
+        </record>
+
+        <record id="hr_hospital_visit_rule_intern_and_doctor" model="ir.rule">
+            <field name="name">Visit: intern sees and can edit only own visit</field>
+            <field name="model_id" ref="model_hr_hospital_visit"/>
+            <field name="domain_force">
+                ['|',
+                    ('doctor_id.system_user', '=', user.id),
+                    '&amp;', ('doctor_id.is_intern', '=', True),
+                            ('doctor_id.mentor_id.system_user', '=', user.id)]
+            </field>
+            <field name="groups" eval="[(4, ref('group_hr_hospital_intern')), (4, ref('group_hr_hospital_doctor'))]"/>
+        </record>
+
+        <record id="hr_hospital_visit_rule_manager" model="ir.rule">
+            <field name="name">Visit: manager sees all visits</field>
+            <field name="model_id" ref="model_hr_hospital_visit"/>
+            <field name="domain_force">[]</field>
+            <field name="groups" eval="[(4, ref('group_hr_hospital_manager'))]"/>
+        </record>
+
+        <record id="hr_hospital_visit_rule_admin" model="ir.rule">
+            <field name="name">Visit: all access for admin user</field>
+            <field name="model_id" ref="model_hr_hospital_visit"/>
+            <field name="domain_force">[]</field>
+            <field name="groups" eval="[(4, ref('group_hr_hospital_admin'))]"/>
+        </record>
+    
+    </data>
+    
+
+</odoo>
